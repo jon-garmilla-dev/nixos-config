@@ -3,6 +3,12 @@
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Solo busca archivos duplicados y los unifica con hard links (NO borra nada)
+  nix.optimise.automatic = true;
+
+  # Soporte de papelera y discos para Dolphin
+  services.gvfs.enable = true;
+
   time.timeZone = "Europe/Madrid";
   i18n.defaultLocale = "es_ES.UTF-8";
   console.keyMap = "es";

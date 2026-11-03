@@ -11,6 +11,28 @@
   home.file.".config/polybar".source = ./polybar;
   home.file.".config/nvim".source = ./nvim;
 
+  # Git declarativo básico (solo tus datos)
+  programs.git = {
+    enable = true;
+    userName = "jon";
+    userEmail = "jon.garmilla.dev@gmail.com";
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
+  };
+
+  # Direnv rápido con caché
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
+  # Solo las dos herramientas que tú pediste
+  home.packages = with pkgs; [
+    dmenu
+    kdePackages.dolphin
+  ];
+
   programs.vim = {
     enable = true;
     extraConfig = ''
