@@ -14,10 +14,10 @@
     interactiveShellInit = "set -g fish_greeting";
   };
 
-  users.users.jon = {
+  users.users.dev = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-    initialPassword = "nixos";
+    hashedPassword = "$6$svj9yRoeNvnEHcaj$5FTywfLDOoRg6gTb6UHUeIdW0oQoZzkav2.3uzQJ2V5zGbzviZQvFbuAP0nIwDyOKFYE4w3/2cm8Xo9yqjak/0";
     shell = pkgs.fish;
   };
 

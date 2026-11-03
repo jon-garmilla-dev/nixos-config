@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   networking.hostName = "devbox";
@@ -12,4 +12,10 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
+
+  # Forzamos tu partición real para que arranque al instante
+  fileSystems."/" = {
+    device = lib.mkForce "/dev/vda1";
+    fsType = "ext4";
+  };
 }

@@ -41,7 +41,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.jon = import ./home/default.nix;
+          home-manager.users.dev = import ./home/default.nix;
         }
       ];
     };
