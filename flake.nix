@@ -1,28 +1,36 @@
 {
-  description = "Configuracion de NixOS con Flakes y Home Manager";
+  description = "NixOS dotfiles profesionales con Disko y host devbox";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager }: 
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko }:
   let
     system = "x86_64-linux";
   in
   {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.devbox = nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
-        ./hardware-configuration.nix
-        ./configuration.nix
+        disko.nixosModules.disko
+        ./hosts/devbox/disko.nix
 
-        # Inyectamos el binario de Neovim ya compilado de unstable directamente al sistema
+        ./hosts/devbox/default.nix
+        ./modules/core/default.nix
+        ./modules/desktop/bspwm.nix
+
         {
           environment.systemPackages = [
             nixpkgs-unstable.legacyPackages.${system}.neovim
@@ -33,25 +41,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.jon = { pkgs, ... }: {
-            home.stateVersion = "24.11";
-
-            # Tus dotfiles intactos
-            home.file.".config/sxhkd/sxhkdrc".source = ./sxhkdrc;
-            home.file.".config/bspwm/bspwmrc" = {
-              source = ./bspwmrc;
-              executable = true;
-            };
-	    home.file.".config/polybar".source = ./polybar;
-            home.file.".config/nvim".source = ./nvim;
-	    programs.vim = {
-		enable = true;
-		extraConfig = ''
-		  set number
-		  set relativenumber
-		'';
-		}; 
-          };
+          home-manager.users.jon = import ./home/default.nix;
         }
       ];
     };
