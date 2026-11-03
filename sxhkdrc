@@ -1,0 +1,44 @@
+alt + Return
+	kitty
+
+alt + d
+	dmenu_run
+
+alt + shift + q
+	bspc node -c
+
+alt + f
+	bspc node -t ~fullscreen
+
+alt + shift + space
+	bspc node -t ~floating
+
+alt + space
+	bspc node -f next.floating || bspc node -f next.tiled
+
+alt + {j,k,l,ntilde}
+	bspc node -f {west,south,north,east}
+
+alt + {Left,Down,Up,Right}
+	bspc node -f {west,south,north,east}
+
+alt + shift + {j,k,l,ntilde}
+	bspc node -s {west,south,north,east}
+
+alt + shift + {Left,Down,Up,Right}
+	bspc node -s {west,south,north,east}
+
+alt + {1-9,0}
+	bspc desktop -f '^{1-9,10}'
+
+alt + shift + {1-9,0}
+	bspc node -d '^{1-9,10}'
+
+alt + shift + r
+	bspc wm -r
+
+alt + shift + c
+	pkill -USR1 -x sxhkd
+
+alt + shift + e
+	bspc quit
