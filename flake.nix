@@ -25,8 +25,8 @@
       inherit system;
       modules = [
         # Disko desactivado para evitar timeouts con particiones que no existen:
-        # disko.nixosModules.disko
-        # ./hosts/devbox/disko.nix
+        disko.nixosModules.disko
+        ./hosts/devbox/disko.nix
 
         ./hosts/devbox/default.nix
         ./modules/core/default.nix
