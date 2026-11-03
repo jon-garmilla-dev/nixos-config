@@ -3,6 +3,7 @@
 {
   home.stateVersion = "24.11";
 
+  # Archivos de configuración de tu entorno gráfico
   home.file.".config/sxhkd/sxhkdrc".source = ./sxhkdrc;
   home.file.".config/bspwm/bspwmrc" = {
     source = ./bspwmrc;
@@ -11,7 +12,7 @@
   home.file.".config/polybar".source = ./polybar;
   home.file.".config/nvim".source = ./nvim;
 
-  # Git declarativo básico (solo tus datos)
+  # Git declarativo
   programs.git = {
     enable = true;
     userName = "jon";
@@ -21,16 +22,24 @@
     };
   };
 
-  # Direnv rápido con caché
+  # Tu terminal Kitty
+  programs.kitty.enable = true;
+
+  # Direnv rápido
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
   };
 
-  # Solo las dos herramientas que tú pediste
+  # Tus aplicaciones del día a día (sin terminales duplicadas)
   home.packages = with pkgs; [
     dmenu
     kdePackages.dolphin
+    firefox
+    vscode
+    postman
+    mpv
+    qbittorrent
   ];
 
   programs.vim = {
