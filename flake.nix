@@ -1,5 +1,5 @@
 {
-  description = "NixOS dotfiles profesionales con Disko y host devbox";
+  description = "NixOS dotfiles profesionales con host devbox";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
@@ -24,8 +24,9 @@
     nixosConfigurations.devbox = nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
-        disko.nixosModules.disko
-        ./hosts/devbox/disko.nix
+        # Disko desactivado para evitar timeouts con particiones que no existen:
+        # disko.nixosModules.disko
+        # ./hosts/devbox/disko.nix
 
         ./hosts/devbox/default.nix
         ./modules/core/default.nix

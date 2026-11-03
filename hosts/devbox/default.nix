@@ -15,7 +15,7 @@
 
   # Forzamos tu partición real para que arranque al instante
   fileSystems."/" = {
-    device = lib.mkForce "/dev/vda1";
+    device = lib.mkForce "/dev/disk/by-uuid/a6b762a1-dbda-4e5b-bcdd-2640a3880940";
     fsType = "ext4";
   };
 }
