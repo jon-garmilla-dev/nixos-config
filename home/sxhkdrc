@@ -2,7 +2,7 @@ alt + Return
 	kitty
 
 alt + d
-	dmenu_run
+	dmenu_run -nb '#000000' -nf '#d0d0d0' -sb '#ffffff' -sf '#000000' -fn 'JetBrainsMono Nerd Font:size=9'
 
 alt + shift + q
 	bspc node -c
