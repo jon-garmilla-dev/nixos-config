@@ -59,7 +59,7 @@
   programs.starship = {
     enable = true;
     enableFishIntegration =true;
-    setting = {
+    settings = {
         add_newline = false;
         kubernetes = {
             disabled = false;
