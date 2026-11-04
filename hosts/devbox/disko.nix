@@ -9,7 +9,7 @@
           partitions = {
             boot = {
               size = "1M";
-              type = "EF02"; # Partición para que GRUB arranque en BIOS
+              type = "EF02";
             };
             root = {
               size = "100%";
@@ -17,6 +17,7 @@
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
+                mountOptions = [ "noatime" ];
               };
             };
           };

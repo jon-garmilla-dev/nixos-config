@@ -6,9 +6,6 @@
     xkb.layout = "es";
     windowManager.bspwm.enable = true;
 
-    displayManager.defaultSession = "none+bspwm";
-
-    # Cursor de raton en flecha normal (nada de X)
     displayManager.sessionCommands = ''
       ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr &
     '';
@@ -20,7 +17,8 @@
     };
   };
 
-  # Sobrescribimos el archivo entero forzando el formato limpio de tu Arch
+  services.displayManager.defaultSession = "none+bspwm";
+
   environment.etc."lightdm/lightdm-mini-greeter.conf".text = lib.mkForce ''
     [greeter]
     user = dev
