@@ -67,7 +67,7 @@ programs.fish = {
     shell = pkgs.fish;
   };
 
-  environment.systemPackages = with pkgs; [
+environment.systemPackages = with pkgs; [
     git
     gcc
     gnumake
@@ -77,5 +77,8 @@ programs.fish = {
     ripgrep
     fd
     xclip
-  ];
-}
+    scrot
+    btop
+    jq
+    fzf
+  ];}

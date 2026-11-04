@@ -42,3 +42,5 @@ alt + shift + c
 
 alt + shift + e
 	bspc quit
+F7
+    scrot -s "$HOME/Pictures/screenshots/%Y-%m-%d_%H-%M-%S.png" -e 'xclip -selection clipboard -t image/png < $f'
