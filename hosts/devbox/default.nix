@@ -3,11 +3,10 @@
 {
   networking.hostName = "devbox";
 
-  # GRUB en negro absoluto sin imagenes de fondo
+  # GRUB en negro: al poner splashImage en null, quita el logo y usa fondo negro nativo
   boot.loader.grub = {
     enable = true;
-    splashImage = null;          # Quita la imagen clara de NixOS en el arranque
-    backgroundColor = "#000000"; # Fondo 100% negro
+    splashImage = null;
   };
 
   services.spice-vdagentd.enable = true;
