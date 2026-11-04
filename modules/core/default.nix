@@ -3,6 +3,8 @@
 {
   system.stateVersion = "24.11";
 
+  programs.command-not-found.enable = false;
+
   nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
