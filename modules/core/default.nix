@@ -83,4 +83,7 @@ environment.systemPackages = with pkgs; [
     btop
     jq
     fzf
+    tealdeer
+    dnsutils
+    netcat-gnu
   ];}
