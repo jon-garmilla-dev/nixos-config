@@ -55,7 +55,7 @@
 
   programs.fish = {
     enable = true;
-    interactiveShellInit = "set -g fish_greeting";
+    interactiveShellInit = "set -g fish_greeting fish_vi_key_binding";
   };
 
   users.users.dev = {
