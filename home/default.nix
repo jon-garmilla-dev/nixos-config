@@ -42,7 +42,6 @@
     dmenu
     kdePackages.dolphin
     papirus-icon-theme       # <-- Tema de iconos Papirus
-    kdePackages.breeze-icons
     firefox
     vscode
     postman
