@@ -3,7 +3,6 @@
 {
   home.stateVersion = "24.11";
 
-  # Archivos de configuración de tu entorno gráfico
   home.file.".config/sxhkd/sxhkdrc".source = ./sxhkdrc;
   home.file.".config/bspwm/bspwmrc" = {
     source = ./bspwmrc;
@@ -12,13 +11,11 @@
   home.file.".config/polybar".source = ./polybar;
   home.file.".config/nvim".source = ./nvim;
 
-  # Le dice a Dolphin que use los iconos de Papirus
   home.file.".config/kdeglobals".text = ''
     [Icons]
     Theme=Papirus-Dark
   '';
 
-  # Git declarativo
   programs.git = {
     enable = true;
     userName = "jon";
@@ -28,20 +25,17 @@
     };
   };
 
-  # Tu terminal Kitty
   programs.kitty.enable = true;
 
-  # Direnv rápido
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
   };
 
-  # Tus aplicaciones del día a día con los iconos Papirus
   home.packages = with pkgs; [
     dmenu
     kdePackages.dolphin
-    papirus-icon-theme       # <-- Tema de iconos Papirus
+    papirus-icon-theme
     firefox
     vscode
     postman
@@ -56,16 +50,20 @@
       set relativenumber
     '';
   };
+
+  programs.fish.enable = true;
+
   programs.starship = {
     enable = true;
-    enableFishIntegration =true;
+    enableFishIntegration = true;
     settings = {
-        add_newline = false;
-        kubernetes = {
-            disabled = false;
-          };
-        };
+      add_newline = false;
+      kubernetes = {
+        disabled = false;
       };
+    };
+  };
+
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;

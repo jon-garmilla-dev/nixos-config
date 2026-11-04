@@ -31,7 +31,6 @@
         ./modules/core/default.nix
         ./modules/desktop/bspwm.nix
 
-        # Usar la versión más reciente de bitwarden-cli para que el servidor no la rechace
         {
           nixpkgs.overlays = [
             (final: prev: {
@@ -50,6 +49,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "backup";
           home-manager.users.dev = import ./home/default.nix;
         }
       ];
