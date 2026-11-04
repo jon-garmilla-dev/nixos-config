@@ -3,7 +3,6 @@
 {
   networking.hostName = "devbox";
 
-  # GRUB en negro: al poner splashImage en null, quita el logo y usa fondo negro nativo
   boot.loader.grub = {
     enable = true;
     splashImage = null;
@@ -17,7 +16,7 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = lib.mkForce "/dev/vda1";
+    device = lib.mkForce "/dev/vda2";
     fsType = "ext4";
   };
 }
