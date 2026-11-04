@@ -6,14 +6,20 @@
     xkb.layout = "es";
     windowManager.bspwm.enable = true;
 
-    # Arregla el cursor del raton para que siempre sea la flecha normal (nada de 'X')
+    # Flecha de raton normal (nada de X)
     displayManager.sessionCommands = ''
       ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr &
     '';
 
-    # Pantalla de login minimalista negra (LightDM Mini Greeter)
     displayManager.lightdm = {
       enable = true;
+      # 1. QUITA LA FOTO DE FONDO Y EL LOGO DE NIXOS AL 100%
+      background = "#000000";
+
+      # 2. Desactiva el greeter viejo por defecto
+      greeters.gtk.enable = false;
+
+      # 3. Tu login minimalista
       greeters.mini = {
         enable = true;
         user = "dev";
@@ -23,8 +29,6 @@
           invalid-password-text = ""
           show-input-cursor = false
           password-alignment = right
-
-          # Puntos redondos clasicos (o pon 0 si quieres que no salga nada al teclear)
           password-character = -1
 
           [greeter-hotkeys]
@@ -37,6 +41,7 @@
           font-size = 1rem
           font-weight = bold
           text-color = "#d0d0d0"
+          background-image = ""
           background-color = "#000000"
           window-color = "#000000"
           border-color = "#000000"
