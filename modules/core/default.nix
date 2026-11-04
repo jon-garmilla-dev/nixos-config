@@ -53,11 +53,13 @@
 
   programs.nix-ld.enable = true;
 
-  programs.fish = {
+programs.fish = {
     enable = true;
-    interactiveShellInit = "set -g fish_greeting fish_vi_key_bindings";
+    interactiveShellInit = ''
+      set -g fish_greeting
+      fish_vi_key_bindings
+    '';
   };
-
   users.users.dev = {
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" "libvirtd" "networkmanager" "audio" "video" ];
