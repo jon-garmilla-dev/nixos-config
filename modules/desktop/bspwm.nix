@@ -11,15 +11,9 @@
       ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr &
     '';
 
+    # Pantalla de login negra sin texto
     displayManager.lightdm = {
       enable = true;
-      # 1. QUITA LA FOTO DE FONDO Y EL LOGO DE NIXOS AL 100%
-      background = "#000000";
-
-      # 2. Desactiva el greeter viejo por defecto
-      greeters.gtk.enable = false;
-
-      # 3. Tu login minimalista
       greeters.mini = {
         enable = true;
         user = "dev";
