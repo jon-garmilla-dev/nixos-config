@@ -12,6 +12,12 @@
   home.file.".config/polybar".source = ./polybar;
   home.file.".config/nvim".source = ./nvim;
 
+  # Le dice a Dolphin que use los iconos de Papirus
+  home.file.".config/kdeglobals".text = ''
+    [Icons]
+    Theme=Papirus-Dark
+  '';
+
   # Git declarativo
   programs.git = {
     enable = true;
@@ -31,10 +37,12 @@
     nix-direnv.enable = true;
   };
 
-  # Tus aplicaciones del día a día (sin terminales duplicadas)
+  # Tus aplicaciones del día a día con los iconos Papirus
   home.packages = with pkgs; [
     dmenu
     kdePackages.dolphin
+    papirus-icon-theme       # <-- Tema de iconos Papirus
+    kdePackages.breeze-icons
     firefox
     vscode
     postman

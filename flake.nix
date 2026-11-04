@@ -24,13 +24,21 @@
     nixosConfigurations.devbox = nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
-        # Disko desactivado para evitar timeouts con particiones que no existen:
         disko.nixosModules.disko
         ./hosts/devbox/disko.nix
 
         ./hosts/devbox/default.nix
         ./modules/core/default.nix
         ./modules/desktop/bspwm.nix
+
+        # Usar la versión más reciente de bitwarden-cli para que el servidor no la rechace
+        {
+          nixpkgs.overlays = [
+            (final: prev: {
+              bitwarden-cli = nixpkgs-unstable.legacyPackages.${system}.bitwarden-cli;
+            })
+          ];
+        }
 
         {
           environment.systemPackages = [
