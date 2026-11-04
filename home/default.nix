@@ -56,4 +56,18 @@
       set relativenumber
     '';
   };
+  programs.starship = {
+    enable = true;
+    enableFishIntegration =true;
+    setting = {
+        add_newline = false;
+        kubernetes = {
+            disabled = false;
+          };
+        };
+      };
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
 }
