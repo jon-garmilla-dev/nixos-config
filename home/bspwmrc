@@ -1,13 +1,13 @@
 #!/bin/sh
 
 pgrep -x sxhkd > /dev/null || sxhkd &
-bspc monitor -d 1 2 3 4 5
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 bspc config border_width 2
 bspc config window_gap 10
 
-# background 
-xsetroot -solid "#000000" &
+# Fondo negro absoluto y cursor en flecha blanca normal
+xsetroot -cursor_name left_ptr -solid "#000000" &
 
-# polybar
+# Polybar
 killall -q polybar
 polybar main &
