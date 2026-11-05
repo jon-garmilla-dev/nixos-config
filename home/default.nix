@@ -44,7 +44,7 @@
     pavucontrol
     xorg.xrandr
     arandr
-    gpicview
+    feh
     vlc
   ];
 
