@@ -42,7 +42,7 @@
     mpv
     qbittorrent
     pavucontrol
-    xorg-xrandr
+    xorg.xrandr
     arandr
     gpicview
     vlc
