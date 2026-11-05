@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config,pkgs, ... }:
 
 {
   system.stateVersion = "24.11";
@@ -67,10 +67,11 @@ programs.fish = {
       fish_vi_key_bindings
     '';
   };
+  users.mutableUsers = false;
   users.users.dev = {
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" "libvirtd" "networkmanager" "audio" "video" ];
-    hashedPassword = "$6$svj9yRoeNvnEHcaj$5FTywfLDOoRg6gTb6UHUeIdW0oQoZzkav2.3uzQJ2V5zGbzviZQvFbuAP0nIwDyOKFYE4w3/2cm8Xo9yqjak/0";
+    hashedPasswordFile = config.sops.secrets.user_password.path;
     shell = pkgs.fish;
   };
 
@@ -93,15 +94,34 @@ environment.systemPackages = with pkgs; [
     netcat-gnu
     sops
     age
+    bitwarden-cli
   ];
-sops = {
+  sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
     age.keyFile = "/home/dev/.config/sops/age/keys.txt";
 
-    secrets.github_ssh_key = {
-      owner = "dev";
-      path = "home/dev/.ssh/ided25519";
+    secrets = {
+      user_password = { neededForUsers = true; };
+
+      # Claves de GitHub y Gitlab
+      github_ssh_key = { owner = "dev"; path = "/home/dev/.ssh/id_ed25519"; };
+      github_jon = { owner = "dev"; path = "/home/dev/.ssh/github_jon"; };
+      gitlab_deploy_key = { owner = "dev"; path = "/home/dev/.ssh/gitlab_deploy_key"; };
+
+      # Claves personales
+      id_rsa = { owner = "dev"; path = "/home/dev/.ssh/id_rsa"; };
+      id_ecdsa = { owner = "dev"; path = "/home/dev/.ssh/id_ecdsa"; };
+      id_ecdsa_personal = { owner = "dev"; path = "/home/dev/.ssh/id_ecdsa_personal"; };
+      jon_garmilla_storage = { owner = "dev"; path = "/home/dev/.ssh/jon.garmilla.storage"; };
+
+      # Claves de Servidores
+      server_Luyando = { owner = "dev"; path = "/home/dev/.ssh/server_Luyando"; };
+      server_phi = { owner = "dev"; path = "/home/dev/.ssh/server_phi"; };
+      server_factorio = { owner = "dev"; path = "/home/dev/.ssh/server_factorio"; };
+      server_TallerGanzedo = { owner = "dev"; path = "/home/dev/.ssh/server_TallerGanzedo"; };
+      server_Ganzedo_Backup = { owner = "dev"; path = "/home/dev/.ssh/server_Ganzedo_Backup"; };
+      luyando_server_nuremberg = { owner = "dev"; path = "/home/dev/.ssh/luyando_server_nuremberg"; };
     };
   };
 }

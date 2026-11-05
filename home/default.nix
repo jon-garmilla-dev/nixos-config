@@ -24,6 +24,70 @@
       init.defaultBranch = "main";
     };
   };
+  programs.ssh = {
+    enable = true;
+    extraConfig = ''
+      Host luyando_local
+          HostName 192.168.1.24
+          User jongarmilla
+          Port 22222
+          IdentityFile ~/.ssh/server_Luyando
+
+      Host luyando_online
+          HostName 100.84.37.124
+          User jongarmilla
+          Port 22222
+          IdentityFile ~/.ssh/server_Luyando
+
+      Host roberjosu_online
+          HostName 100.88.155.121
+          User roberjosu
+          IdentityFile ~/.ssh/pc_roberjosu
+
+      Host phi_local
+          HostName 192.168.1.23
+          User phi_admin
+          Port 33333
+          IdentityFile ~/.ssh/server_phi
+
+      Host phi_online
+          HostName 100.98.112.64
+          User phi_admin
+          Port 33333
+          IdentityFile ~/.ssh/server_phi
+
+      Host factorio_online
+          HostName 134.122.85.162
+          User root
+          IdentityFile ~/.ssh/server_factorio
+
+      Host rho_server
+          HostName 100.90.187.62
+          User jon_garmilla_dev
+
+      Host TallerGanzedo_online
+          HostName 100.78.245.102
+          User tallerGanzedo
+          IdentityFile ~/.ssh/server_TallerGanzedo
+          SetEnv TERM=xterm-256color
+
+      Host TallerGanzedo_backup_online
+          HostName 100.112.162.116
+          User root
+          IdentityFile ~/.ssh/server_Ganzedo_Backup
+
+      Host luyando_server_nuremberg
+          HostName 178.104.48.101
+          User root
+          IdentityFile ~/.ssh/luyando_server_nuremberg
+
+      Host github.com
+          HostName github.com
+          User git
+          IdentityFile ~/.ssh/id_ed25519
+          IdentitiesOnly yes
+    '';
+  };
 
   programs.kitty.enable = true;
 
