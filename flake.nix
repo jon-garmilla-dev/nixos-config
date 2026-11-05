@@ -14,13 +14,13 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  sops-nix = { 
-    url = "github:Mic92/sops-nix";
-    inputs.nixpkgs.follows = "nixpkgs-unstable";
-  };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko , sops-nix}:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, sops-nix }:
   let
     system = "x86_64-linux";
   in
@@ -28,13 +28,17 @@
     nixosConfigurations.devbox = nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
-        sops-nix.nixosModules.sops
         disko.nixosModules.disko
         ./hosts/devbox/disko.nix
 
         ./hosts/devbox/default.nix
         ./modules/core/default.nix
         ./modules/desktop/bspwm.nix
+
+        sops-nix.nixosModules.sops
+        {
+          sops.package = sops-nix.packages.${system}.sops-install-secrets;
+        }
 
         {
           nixpkgs.overlays = [
