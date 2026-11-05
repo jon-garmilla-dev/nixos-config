@@ -99,8 +99,9 @@ sops = {
     defaultSopsFormat = "yaml";
     age.keyFile = "/home/dev/.config/sops/age/keys.txt";
 
-    secrets.saludo_secreto = {
+    secrets.github_ssh_key = {
       owner = "dev";
+      path = "home/dev/.ssh/ided25519";
     };
   };
 }
