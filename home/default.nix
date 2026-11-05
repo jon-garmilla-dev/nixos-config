@@ -41,6 +41,11 @@
     postman
     mpv
     qbittorrent
+    pavucontrol
+    xorg-xrandr
+    arandr
+    gpicview
+    vlc
   ];
 
   programs.vim = {

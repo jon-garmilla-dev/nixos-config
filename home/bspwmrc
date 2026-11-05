@@ -1,11 +1,20 @@
 #!/bin/sh
 
 pgrep -x sxhkd > /dev/null || sxhkd &
-bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+
+# Monitors 
+if xrandr -q | grep -q 'HDMI-1 connected'; then
+    xrandr --output HDMI-1 --mode 1440x900 --rate 60.00 --primary --output eDP-1 --mode 1440x900 --rate 60.00 --right-of HDMI-1
+    bspc monitor HDMI-1 -d 1 2 3 4 5
+    bspc monitor eDP-1 -d 6 7 8 9 10
+else
+    bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+fi
+
 bspc config border_width 2
 bspc config window_gap 10
 
-# Fondo negro absoluto y cursor en flecha blanca normal
+# Windows black
 xsetroot -cursor_name left_ptr -solid "#000000" &
 
 # Polybar
