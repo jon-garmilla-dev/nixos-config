@@ -14,9 +14,13 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+  sops-nix = { 
+    url = "github:Mic92/sops-nix";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko , sops-nix}:
   let
     system = "x86_64-linux";
   in
@@ -24,6 +28,7 @@
     nixosConfigurations.devbox = nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
+        sops-nix.nixosModules.sops
         disko.nixosModules.disko
         ./hosts/devbox/disko.nix
 

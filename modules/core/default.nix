@@ -3,6 +3,11 @@
 {
   system.stateVersion = "24.11";
 
+  environment.variables = {
+    EDITOR = "vim";
+    VISUAL = "vim";
+  };
+
   programs.command-not-found.enable = false;
 
   nixpkgs.config.allowUnfree = true;
@@ -86,4 +91,17 @@ environment.systemPackages = with pkgs; [
     tealdeer
     dnsutils
     netcat-gnu
-  ];}
+    sops
+    age
+  ];
+sops = {
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/home/dev/.config/sops/age/keys.txt";
+
+    secrets.saludo_secreto = {
+      owner = "dev";
+    };
+  };
+}
+  
