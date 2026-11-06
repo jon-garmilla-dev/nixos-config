@@ -1,4 +1,4 @@
-{ config,pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   system.stateVersion = "24.11";
@@ -60,13 +60,14 @@
 
   programs.nix-ld.enable = true;
 
-programs.fish = {
+  programs.fish = {
     enable = true;
     interactiveShellInit = ''
       set -g fish_greeting
       fish_vi_key_bindings
     '';
   };
+
   users.mutableUsers = false;
   users.users.dev = {
     isNormalUser = true;
@@ -75,7 +76,7 @@ programs.fish = {
     shell = pkgs.fish;
   };
 
-environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     git
     gcc
     gnumake
@@ -96,10 +97,11 @@ environment.systemPackages = with pkgs; [
     age
     bitwarden-cli
   ];
+
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
-    age.keyFile = "/home/dev/.config/sops/age/keys.txt";
+    age.keyFile = "/var/lib/sops-nix/key.txt";
 
     secrets = {
       user_password = { neededForUsers = true; };
@@ -125,4 +127,3 @@ environment.systemPackages = with pkgs; [
     };
   };
 }
-  
