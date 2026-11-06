@@ -75,6 +75,9 @@
     hashedPasswordFile = config.sops.secrets.user_password.path;
     shell = pkgs.fish;
   };
+  systemd.tmpfiles.rules = [
+    "d /home/dev/.ssh 0700 dev users -"
+  ];
 
   environment.systemPackages = with pkgs; [
     git
