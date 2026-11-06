@@ -3,21 +3,19 @@
 {
   networking.hostName = "devbox";
 
-  boot.loader.grub = {
-    enable = true;
-    splashImage = null;
-  };
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.enable = false;
 
   boot.initrd.availableKernelModules = [
-    "ata_piix"
-    "uhci_hcd"
-    "virtio_pci"
-    "sr_mod"
-    "virtio_blk"
+    "nvme"
+    "xhci_pci"
+    "ahci"
+    "usb_storage"
+    "usbhid"
+    "sd_mod"
   ];
 
-  services.spice-vdagentd.enable = true;
-  services.qemuGuest.enable = true;
   services.fstrim.enable = true;
 
   zramSwap.enable = true;
