@@ -109,18 +109,18 @@
     secrets = {
       user_password = { neededForUsers = true; };
 
-      # Claves de GitHub y Gitlab
+      # Github / Gitlab  keys 
       github_ssh_key = { owner = "dev"; path = "/home/dev/.ssh/id_ed25519"; };
       github_jon = { owner = "dev"; path = "/home/dev/.ssh/github_jon"; };
       gitlab_deploy_key = { owner = "dev"; path = "/home/dev/.ssh/gitlab_deploy_key"; };
 
-      # Claves personales
+      # Personal Keys
       id_rsa = { owner = "dev"; path = "/home/dev/.ssh/id_rsa"; };
       id_ecdsa = { owner = "dev"; path = "/home/dev/.ssh/id_ecdsa"; };
       id_ecdsa_personal = { owner = "dev"; path = "/home/dev/.ssh/id_ecdsa_personal"; };
       jon_garmilla_storage = { owner = "dev"; path = "/home/dev/.ssh/jon.garmilla.storage"; };
 
-      # Claves de Servidores
+      # Servers Keys
       server_Luyando = { owner = "dev"; path = "/home/dev/.ssh/server_Luyando"; };
       server_phi = { owner = "dev"; path = "/home/dev/.ssh/server_phi"; };
       server_factorio = { owner = "dev"; path = "/home/dev/.ssh/server_factorio"; };

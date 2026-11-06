@@ -1,5 +1,5 @@
 keys:
-  - &dev_user age1fqewmxu9p3vwr2lgp370endzkhxfant7zn35s3wf9ss330gtkpzsg702dl
+  - &dev_user age1vcup9y4qmq5ka3a2sqzrax3nx0mrmgvmgzfl2czle3zt07eh85yqgm8v6l
 
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
