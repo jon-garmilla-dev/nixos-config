@@ -128,6 +128,7 @@
       server_TallerGanzedo = { owner = "dev"; path = "/home/dev/.ssh/server_TallerGanzedo"; };
       server_Ganzedo_Backup = { owner = "dev"; path = "/home/dev/.ssh/server_Ganzedo_Backup"; };
       luyando_server_nuremberg = { owner = "dev"; path = "/home/dev/.ssh/luyando_server_nuremberg"; };
+      ssh_config = {owner = "dev";};
     };
   };
 }

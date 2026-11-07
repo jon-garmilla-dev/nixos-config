@@ -29,7 +29,6 @@
       inherit system;
       modules = [
         disko.nixosModules.disko
-        ./hosts/devbox/disko.nix
 
         ./hosts/devbox/default.nix
         ./modules/core/default.nix
