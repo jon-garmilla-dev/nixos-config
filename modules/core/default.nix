@@ -103,12 +103,16 @@
   ];
 
   sops = {
-    defaultSopsFile = ../../secrets/secrets.yaml;
-    defaultSopsFormat = "yaml";
     age.keyFile = "/var/lib/sops-nix/key.txt";
+    defaultSopsFormat = "yaml";
+
+    defaultSopsFile = ../../secrets/ssh.yaml;
 
     secrets = {
-      user_password = { neededForUsers = true; };
+      user_password = {
+        sopsFile = ../../secrets/users.yaml;
+        neededForUsers = true; 
+    };
 
       # Github / Gitlab  keys 
       github_ssh_key = { owner = "dev"; path = "/home/dev/.ssh/id_ed25519"; };
