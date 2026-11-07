@@ -68,7 +68,7 @@
     '';
   };
 
-  users.mutableUsers = false;
+  users.mutableUsers = true;
   users.users.dev = {
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" "libvirtd" "networkmanager" "audio" "video" ];
@@ -77,6 +77,7 @@
   };
   systemd.tmpfiles.rules = [
     "d /home/dev/.ssh 0700 dev users -"
+    "L+ /root/.config/nvim - - - - /home/dev/.config/nvim"
   ];
 
   environment.systemPackages = with pkgs; [

@@ -29,7 +29,7 @@ alt + shift + {Left,Down,Up,Right}
 	bspc node -s {west,south,north,east}
 
 alt + {1-9,0}
-	bspc desktop -f '^{1-9,10}'
+	bspc desktop -f '{1-9,10}'
 
 alt + shift + {1-9,0}
 	bspc node -d '^{1-9,10}'

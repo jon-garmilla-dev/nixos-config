@@ -3,12 +3,14 @@
 {
   networking.hostName = "devbox";
 
-  # Arranque UEFI con systemd-boot
+  # UEFI start boot loader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.enable = false;
+  boot.loader.systemd-boot.configurationLimit = 10;
+  hardware.enableRedistributableFirmware = true;
 
-  # Módulos del Kernel
+  # Kernel
   boot.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"
@@ -20,4 +22,5 @@
 
   services.fstrim.enable = true;
   zramSwap.enable = true;
+  system.nixos.label = "stable";
 }
