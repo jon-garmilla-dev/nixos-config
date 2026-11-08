@@ -25,6 +25,9 @@
 
   time.timeZone = "Europe/Madrid";
   i18n.defaultLocale = "es_ES.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_MESSAGES = "en_US.UTF-8";
+  };
   console.keyMap = "es";
 
   networking.networkmanager.enable = true;
