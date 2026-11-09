@@ -62,7 +62,10 @@ bspc rule -a firefox:Navigator split_dir=east split_ratio=0.5
 
 # Windows black
 xsetroot -cursor_name left_ptr -solid "#000000" &
-xset s off -dpms
+xset -dpms
+xset s off
+xset s noblank
+xset dpms 0 0 0
 
 # Polybar
 pkill -x polybar
