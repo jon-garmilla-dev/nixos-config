@@ -3,29 +3,58 @@
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 # Monitors
-if xrandr -q | grep -q 'HDMI-1 connected' && xrandr -q | grep -q 'DP-1 connected'; then
-    xrandr --output DP-1 --mode 1920x1080 --pos 0x0 --output HDMI-1 --primary --mode 1920x1080 --pos 1920x0 --output eDP-1 --mode 1920x1080 --pos 3840x0
-    bspc monitor eDP-1  -d 1 8 
+if xrandr -q | grep -q '^HDMI-1 connected' && xrandr -q | grep -q '^DP-1 connected'; then
+    xrandr --output DP-1   --mode 1920x1080 --pos 0x0 \
+           --output HDMI-1 --mode 1920x1080 --pos 1920x0 --primary \
+           --output eDP-1  --mode 1920x1080 --pos 3840x0
+    bspc wm -O DP-1 HDMI-1 eDP-1
     bspc monitor DP-1   -d 3 7
     bspc monitor HDMI-1 -d 2 4 5 6 9 10
-elif xrandr -q | grep -q 'HDMI-1 connected'; then
-    xrandr --output HDMI-1 --primary --mode 1920x1080 --output eDP-1 --mode 1920x1080 --right-of HDMI-1 --output DP-1 --off
-    bspc monitor eDP-1  -d 1
-    bspc monitor HDMI-1 -d 2 3 4 5 6 7 8 9 10
-elif xrandr -q | grep -q 'DP-1 connected'; then
-    xrandr --output DP-1 --primary --mode 1920x1080 --output eDP-1 --mode 1920x1080 --right-of DP-1 --output HDMI-1 --off
-    bspc monitor eDP-1 -d 1
+    bspc monitor eDP-1  -d 1 8
+elif xrandr -q | grep -q '^HDMI-1 connected'; then
+    bspc monitor DP-1 -r 2>/dev/null
+    for d in 2 3 4 5 6 7 8 9 10; do
+        bspc desktop "$d" -m HDMI-1 2>/dev/null
+    done
+    bspc desktop 1 -m eDP-1 2>/dev/null
+    xrandr --output HDMI-1 --mode 1920x1080 --pos 0x0 --primary \
+           --output eDP-1  --mode 1920x1080 --pos 1920x0 \
+           --output DP-1   --off
+    bspc wm -O HDMI-1 eDP-1
+    bspc monitor HDMI-1 -d 2 3 4 5 6 7 9 10
+    bspc monitor eDP-1  -d 1 8
+elif xrandr -q | grep -q '^DP-1 connected'; then
+    bspc monitor HDMI-1 -r 2>/dev/null
+    for d in 2 3 4 5 6 7 8 9 10; do
+        bspc desktop "$d" -m DP-1 2>/dev/null
+    done
+    bspc desktop 1 -m eDP-1 2>/dev/null
+    xrandr --output DP-1  --mode 1920x1080 --pos 0x0 --primary \
+           --output eDP-1 --mode 1920x1080 --pos 1920x0 \
+           --output HDMI-1 --off
+    bspc wm -O DP-1 eDP-1
     bspc monitor DP-1  -d 2 3 4 5 6 7 8 9 10
+    bspc monitor eDP-1 -d 1
 else
-    xrandr --output eDP-1 --primary --mode 1920x1080 --output HDMI-1 --off --output DP-1 --off
+    bspc monitor HDMI-1 -r 2>/dev/null
+    bspc monitor DP-1   -r 2>/dev/null
+    xrandr --output eDP-1  --mode 1920x1080 --pos 0x0 --primary \
+           --output HDMI-1 --off \
+           --output DP-1   --off
     bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9 10
 fi
 
 # Global
 bspc config border_width 2
 bspc config window_gap 10
-bspc config automatic_scheme spiral
 bspc config initial_polarity first_child
+bspc config focus_follows_pointer true
+bspc rule -a '*' split_dir=east
+
+pkill -f "bspc subscribe node_add"
+bspc subscribe node_add node_remove | while read -r _; do
+    bspc node @/ -B
+done &
 
 # Firefox
 bspc rule -a Navigator split_dir=east split_ratio=0.5
@@ -33,6 +62,7 @@ bspc rule -a firefox:Navigator split_dir=east split_ratio=0.5
 
 # Windows black
 xsetroot -cursor_name left_ptr -solid "#000000" &
+xset s off -dpms
 
 # Polybar
 pkill -x polybar

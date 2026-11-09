@@ -2,7 +2,6 @@ alt + Return
 	kitty
 
 alt + d
-	dmenu_run -nb '#000000' -nf '#d0d0d0' -sb '#ffffff' -sf '#000000' -fn 'JetBrainsMono Nerd Font:size=9'
 
 alt + shift + q
 	bspc node -c
@@ -23,10 +22,13 @@ alt + {Left,Down,Up,Right}
 	bspc node -f {west,south,north,east}
 
 alt + shift + {j,k,l,ntilde}
-	bspc node -s {west,south,north,east}
+	dir={west,south,north,east}; bspc node -s "$dir.local" --follow || bspc node -m "$dir" --follow
 
 alt + shift + {Left,Down,Up,Right}
-	bspc node -s {west,south,north,east}
+	dir={west,south,north,east}; bspc node -s "$dir.local" --follow || bspc node -m "$dir" --follow
+
+super + shift + {h,j,k,l}
+	dir={west,south,north,east}; bspc node -s "$dir.local" --follow || bspc node -m "$dir" --follow
 
 alt + {1-9,0}
 	bspc desktop -f '{1-9,10}'
