@@ -67,6 +67,10 @@ xset s off
 xset s noblank
 xset dpms 0 0 0
 
+# Compositor
+pkill -x picom
+picom --backend glx --vsync -b &
+
 # Polybar
 pkill -x polybar
 for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do

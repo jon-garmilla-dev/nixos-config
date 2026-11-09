@@ -93,6 +93,7 @@
     xorg.xrandr
     feh
     papirus-icon-theme
+    picom
 
     # Development
     vscode
