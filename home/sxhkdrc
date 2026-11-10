@@ -2,6 +2,7 @@ alt + Return
 	kitty
 
 alt + d
+	dmenu_run -nb '#000000' -nf '#d0d0d0' -sb '#ffffff' -sf '#000000' -fn 'JetBrainsMono Nerd Font:size=9'
 
 alt + shift + q
 	bspc node -c
@@ -69,5 +70,5 @@ alt + shift + c
 alt + shift + e
 	bspc quit
 
-ctrl + alt + s
+F4
     scrot -s "$HOME/Pictures/screenshots/%Y-%m-%d_%H-%M-%S.png" -e 'xclip -selection clipboard -t image/png < $f'
