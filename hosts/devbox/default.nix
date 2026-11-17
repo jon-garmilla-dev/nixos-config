@@ -5,7 +5,7 @@
     ./disko.nix
     ./hardware.nix
   ];
-  
+
   networking.hostName = "devbox";
 
   #UEFI
@@ -18,19 +18,18 @@
 
   system.nixos.label = "stable";
 
-  # Window 
+  # Window
   systemd.targets.sleep.enable = false;
   systemd.targets.suspend.enable = false;
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
 
-  services.logind.lidSwitch = "ignore";
-  services.logind.lidSwitchExternalPower = "ignore";
-  services.logind.lidSwitchDocked = "ignore";
-
-  services.logind.extraConfig = ''
-    IdleAction=ignore
-    HandleSuspendKey=ignore
-    HandleHibernateKey=ignore
-  '';
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+    HandleLidSwitchDocked = "ignore";
+    IdleAction = "ignore";
+    HandleSuspendKey = "ignore";
+    HandleHibernateKey = "ignore";
+  };
 }
