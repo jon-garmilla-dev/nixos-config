@@ -16,6 +16,12 @@
     ];
   };
 
+  # Bluetooh
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   # Kernel
   boot.initrd.availableKernelModules = [
     "nvme"
