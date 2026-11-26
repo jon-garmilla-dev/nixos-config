@@ -16,7 +16,7 @@ alt + shift + space
 alt + space
 	bspc node -f next.floating || bspc node -f next.tiled
 
-alt + {j,k,l,ntilde}
+alt + {h,j,k,l}
 	bspc node -f {west,south,north,east}
 
 alt + {Left,Down,Up,Right}
